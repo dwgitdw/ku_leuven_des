@@ -2,18 +2,58 @@
 
 Ce systeme represente une ligne de production avec palettes/carriers, un poste Human, des robots, des lifts, des files d'attente et des replays offline ou live dans USD Composer.
 
+## Convention de chemin
+
+Dans ce README, `PROJECT_ROOT` designe le dossier racine du projet, c'est-a-dire le dossier qui contient `README.md`, `3d/` et `scripts/`.
+
+La personne qui installe le projet peut choisir librement ou le mettre, par exemple:
+
+```text
+C:\Projects\USD_Composer
+D:\Work\ku_leuven_des
+E:\Engineering\USD_Composer
+```
+
+Regle importante: modifier seulement la valeur de `PROJECT_ROOT` dans les commandes et les snippets Python. Ne pas modifier les chemins internes du projet comme `scripts\DES\...`, `scripts\RealtimeTCP\...` ou `3d\layout\...`, car ils sont relatifs a `PROJECT_ROOT`.
+
+Exemple PowerShell:
+
+```powershell
+$PROJECT_ROOT = "C:\Projects\USD_Composer"
+cd $PROJECT_ROOT
+```
+
+Exemple dans le Script Editor USD Composer:
+
+```python
+PROJECT_ROOT = Path(r"C:\Projects\USD_Composer")
+```
+
 ## Installation depuis GitHub
 
 Pour installer le projet sur une nouvelle machine, faire d'abord ceci:
 
 ```powershell
-cd C:\Users\AUSOM\Desktop
+$WORKSPACE_DIR = "C:\Projects"
+$PROJECT_DIR_NAME = "USD_Composer"
+$PROJECT_ROOT = Join-Path $WORKSPACE_DIR $PROJECT_DIR_NAME
+
 git lfs install
-git clone https://github.com/dwgitdw/USD_Composer.git
-cd USD_Composer
+git clone https://github.com/dwgitdw/ku_leuven_des.git $PROJECT_ROOT
+cd $PROJECT_ROOT
 git lfs pull
 ```
 
+Remplacer seulement `$WORKSPACE_DIR` pour choisir l'emplacement, et eventuellement `$PROJECT_DIR_NAME` pour choisir le nom du dossier local. Le nom du dossier local peut rester `USD_Composer`, meme si le depot GitHub s'appelle `ku_leuven_des`.
+
+Si un nouveau terminal PowerShell est ouvert plus tard, redefinir simplement:
+
+```powershell
+$PROJECT_ROOT = "C:\Projects\USD_Composer"
+cd $PROJECT_ROOT
+```
+
+en adaptant la valeur au dossier choisi au moment du clone.
 
 Ensuite installer le template NVIDIA dans le dossier du projet:
 
@@ -88,17 +128,19 @@ Prerequis Kit App Template selon NVIDIA:
 Installation Windows recommandee dans ce projet:
 
 ```powershell
-cd C:\Users\AUSOM\Desktop\r1130576\USD_Composer
+cd $PROJECT_ROOT
 git lfs install
 git clone https://github.com/NVIDIA-Omniverse/kit-app-template.git kit-app-template
 cd kit-app-template
 git lfs pull
+cd ..
 ```
 
 Si `kit-app-template/` existe deja, ne pas recloner par-dessus. Entrer simplement dedans:
 
 ```powershell
-cd C:\Users\AUSOM\Desktop\r1130576\USD_Composer\kit-app-template
+cd $PROJECT_ROOT
+cd kit-app-template
 ```
 
 Procedure NVIDIA pour creer une application depuis le template:
@@ -137,11 +179,11 @@ Le principe important: les positions ne sont pas codees en dur dans les scripts.
 
 ## Demarrage rapide
 
-Remplacer le chemin si le projet est installe ailleurs:
+Definir `PROJECT_ROOT` une fois dans le terminal:
 
 ```powershell
-$ROOT = "C:\Users\AUSOM\Desktop\r1130576\USD_Composer"
-cd $ROOT
+$PROJECT_ROOT = "C:\Projects\USD_Composer"
+cd $PROJECT_ROOT
 ```
 
 Verifier l'environnement Python:
@@ -385,7 +427,7 @@ scripts/DES/production_layout.json
 Commandes:
 
 ```powershell
-cd C:\Users\AUSOM\Desktop\r1130576\USD_Composer
+cd $PROJECT_ROOT
 python scripts\DES\USD_FINAL_build.py
 python scripts\DES\USD_FINAL_simulation.py
 ```
@@ -477,8 +519,8 @@ Etape 2: lancer le bridge dans le Script Editor USD Composer:
 import sys
 from pathlib import Path
 
-ROOT = Path(r"C:\Users\AUSOM\Desktop\r1130576\USD_Composer")
-SCRIPTS = ROOT / "scripts"
+PROJECT_ROOT = Path(r"C:\Projects\USD_Composer")
+SCRIPTS = PROJECT_ROOT / "scripts"
 
 if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
@@ -489,7 +531,7 @@ rt.stop_tcp_bridge()
 rt.start_tcp_bridge(
     host="127.0.0.1",
     port=5050,
-    places_path=str(ROOT / "scripts" / "RealtimeTCP" / "places.json"),
+    places_path=str(PROJECT_ROOT / "scripts" / "RealtimeTCP" / "places.json"),
 )
 
 print(rt.bridge_status())
@@ -498,7 +540,7 @@ print(rt.bridge_status())
 Etape 3: lancer le producteur dans PowerShell:
 
 ```powershell
-cd C:\Users\AUSOM\Desktop\r1130576\USD_Composer
+cd $PROJECT_ROOT
 python scripts\RealtimeTCP\realtime_tcp_build_and_produce.py
 ```
 
@@ -576,7 +618,7 @@ scripts/Simulogs/CSV/logs.csv
 Commandes:
 
 ```powershell
-cd C:\Users\AUSOM\Desktop\r1130576\USD_Composer
+cd $PROJECT_ROOT
 python scripts\Simulogs\01_build_from_logs.py
 python scripts\Simulogs\02_replay_logs.py
 ```
@@ -668,8 +710,8 @@ Etape 2: lancer le bridge dans le Script Editor USD Composer:
 import sys
 from pathlib import Path
 
-ROOT = Path(r"C:\Users\AUSOM\Desktop\r1130576\USD_Composer")
-SCRIPTS = ROOT / "scripts"
+PROJECT_ROOT = Path(r"C:\Projects\USD_Composer")
+SCRIPTS = PROJECT_ROOT / "scripts"
 
 if str(SCRIPTS) not in sys.path:
     sys.path.insert(0, str(SCRIPTS))
@@ -687,14 +729,14 @@ Etape 3: lancer le lecteur de logs dans PowerShell.
 Pour rejouer les lignes deja presentes dans le CSV:
 
 ```powershell
-cd C:\Users\AUSOM\Desktop\r1130576\USD_Composer
+cd $PROJECT_ROOT
 python scripts\RealTimeTCPlogs\realtime_tcp_logs_live.py --drain-existing --replay-timing
 ```
 
 Pour suivre uniquement les nouvelles lignes ajoutees au CSV:
 
 ```powershell
-cd C:\Users\AUSOM\Desktop\r1130576\USD_Composer
+cd $PROJECT_ROOT
 python scripts\RealTimeTCPlogs\realtime_tcp_logs_live.py
 ```
 
@@ -1091,7 +1133,7 @@ Puis relancer le bridge, ou choisir un autre port cote Composer et cote PowerShe
 Executer au minimum:
 
 ```powershell
-cd C:\Users\AUSOM\Desktop\r1130576\USD_Composer
+cd $PROJECT_ROOT
 python -m compileall -q scripts\DES scripts\RealtimeTCP scripts\Simulogs scripts\RealTimeTCPlogs
 ```
 
