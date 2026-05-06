@@ -1,0 +1,15 @@
+[package]
+title = "RealtimeTCP Auto Bridge"
+version = "0.1.0"
+description = "Auto-start TCP bridge for USD Composer realtime updates."
+category = "Simulation"
+keywords = ["usd", "tcp", "realtime", "bridge"]
+
+[settings.exts."omni.realtimetcp.autobridge"]
+enabled = true
+host = "127.0.0.1"
+port = 5050
+places_path = ""
+
+[[python.module]]
+name = "omni.realtimetcp.autobridge"

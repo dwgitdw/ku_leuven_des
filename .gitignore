@@ -1,0 +1,27 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+
+# Local/editor state
+.idea/
+.vscode/
+*.log
+
+# Removed legacy Omniverse template; ignore if a locked local file remains.
+kit-app-template/
+
+# Runtime/audit files
+*.ndjson
+scripts/RealTimeTCPlogs/CSV/live_log.csv
+
+# Generated USD outputs
+3d/DES/model_build.usd
+3d/DES/model_replay.usd
+3d/Simulogs/modelbuffer_build.usd
+3d/Simulogs/modelbuffer_replay.usd
+
+# Temporary files
+*.tmp
+*.bak
+*~

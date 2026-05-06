@@ -1,0 +1,275 @@
+{
+  "resource_map": {
+    "1": "Human",
+    "2": "Robot_1",
+    "3": "Robot_2",
+    "4": "Robot_3",
+    "5": "Visual_System",
+    "6": "Lift_ToQueue_End",
+    "7": "Lift_Return_End"
+  },
+  "transfers": {
+    "Lift_ToQueue": {
+      "duration": 4.0,
+      "capacity": 1,
+      "from": "marker:human_to_lift1_p2",
+      "to": "marker:lift1"
+    },
+    "Lift_Return": {
+      "duration": 4.0,
+      "capacity": 1,
+      "from": "marker:robot_to_lift2_p1",
+      "to": "marker:lift2"
+    }
+  },
+  "workstations": {
+    "Human": {
+      "entry": "marker:entry_exit_human",
+      "processing": "marker:human_processing",
+      "exit": "marker:entry_exit_human",
+      "entry_to_processing": [
+        "marker:entry_exit_human",
+        "marker:human_processing"
+      ],
+      "processing_to_exit": [
+        "marker:human_processing",
+        "marker:entry_exit_human"
+      ],
+      "buffer": "marker:humanbuffer_p2",
+      "entry_to_buffer": [
+        "marker:entry_exit_human",
+        "marker:humanbuffer_entry",
+        "marker:humanbuffer_p1",
+        "marker:humanbuffer_p2"
+      ],
+      "buffer_path": [
+        "marker:humanbuffer_entry",
+        "marker:humanbuffer_p1",
+        "marker:humanbuffer_p2"
+      ],
+      "buffer_to_processing": [
+        "marker:humanbuffer_p2",
+        "marker:human_processing"
+      ],
+      "processing_to_buffer": [
+        "marker:human_processing",
+        "marker:humanbuffer_entry",
+        "marker:humanbuffer_p1",
+        "marker:humanbuffer_p2"
+      ]
+    },
+    "Robot_1": {
+      "entry": "marker:entry_exit_robot1",
+      "processing": "marker:processing_robot1",
+      "exit": "marker:entry_exit_robot1",
+      "entry_to_processing": [
+        "marker:entry_exit_robot1",
+        "marker:processing_robot1"
+      ],
+      "processing_to_exit": [
+        "marker:processing_robot1",
+        "marker:entry_exit_robot1"
+      ],
+      "buffer": "marker:robot1buffer_p2",
+      "entry_to_buffer": [
+        "marker:entry_exit_robot1",
+        "marker:robot1buffer_entry",
+        "marker:robot1buffer_p1",
+        "marker:robot1buffer_p2"
+      ],
+      "buffer_path": [
+        "marker:robot1buffer_entry",
+        "marker:robot1buffer_p1",
+        "marker:robot1buffer_p2"
+      ],
+      "buffer_to_processing": [
+        "marker:robot1buffer_p2",
+        "marker:processing_robot1"
+      ],
+      "processing_to_buffer": [
+        "marker:processing_robot1",
+        "marker:robot1buffer_entry",
+        "marker:robot1buffer_p1",
+        "marker:robot1buffer_p2"
+      ]
+    },
+    "Robot_2": {
+      "entry": "marker:entry_exit_robot2",
+      "processing": "marker:processing_robot2",
+      "exit": "marker:entry_exit_robot2",
+      "entry_to_processing": [
+        "marker:entry_exit_robot2",
+        "marker:processing_robot2"
+      ],
+      "processing_to_exit": [
+        "marker:processing_robot2",
+        "marker:entry_exit_robot2"
+      ],
+      "buffer": "marker:robot2buffer_p2",
+      "entry_to_buffer": [
+        "marker:entry_exit_robot2",
+        "marker:robot2buffer_entry",
+        "marker:robot2buffer_p1",
+        "marker:robot2buffer_p2"
+      ],
+      "buffer_path": [
+        "marker:robot2buffer_entry",
+        "marker:robot2buffer_p1",
+        "marker:robot2buffer_p2"
+      ],
+      "buffer_to_processing": [
+        "marker:robot2buffer_p2",
+        "marker:processing_robot2"
+      ],
+      "processing_to_buffer": [
+        "marker:processing_robot2",
+        "marker:robot2buffer_entry",
+        "marker:robot2buffer_p1",
+        "marker:robot2buffer_p2"
+      ]
+    },
+    "Robot_3": {
+      "entry": "marker:entry_exit_robot3",
+      "processing": "marker:processing_robot3",
+      "exit": "marker:entry_exit_robot3",
+      "entry_to_processing": [
+        "marker:entry_exit_robot3",
+        "marker:processing_robot3"
+      ],
+      "processing_to_exit": [
+        "marker:processing_robot3",
+        "marker:entry_exit_robot3"
+      ],
+      "buffer": "marker:robot3buffer_p2",
+      "entry_to_buffer": [
+        "marker:entry_exit_robot3",
+        "marker:robot3buffer_entry",
+        "marker:robot3buffer_p1",
+        "marker:robot3buffer_p2"
+      ],
+      "buffer_path": [
+        "marker:robot3buffer_entry",
+        "marker:robot3buffer_p1",
+        "marker:robot3buffer_p2"
+      ],
+      "buffer_to_processing": [
+        "marker:robot3buffer_p2",
+        "marker:processing_robot3"
+      ],
+      "processing_to_buffer": [
+        "marker:processing_robot3",
+        "marker:robot3buffer_entry",
+        "marker:robot3buffer_p1",
+        "marker:robot3buffer_p2"
+      ]
+    },
+    "Visual_System": {
+      "entry": "marker:visual_system",
+      "processing": "marker:visual_system",
+      "exit": "marker:visual_system",
+      "entry_to_processing": [
+        "marker:visual_system"
+      ],
+      "processing_to_exit": [
+        "marker:visual_system"
+      ]
+    },
+    "Lift_ToQueue_End": {
+      "entry": "marker:lift1",
+      "processing": "marker:lift1",
+      "exit": "marker:lift1",
+      "entry_to_processing": [
+        "marker:lift1"
+      ],
+      "processing_to_exit": [
+        "marker:lift1"
+      ]
+    },
+    "Lift_Return_End": {
+      "entry": "marker:lift2",
+      "processing": "marker:lift2",
+      "exit": "marker:lift2",
+      "entry_to_processing": [
+        "marker:lift2"
+      ],
+      "processing_to_exit": [
+        "marker:lift2"
+      ]
+    }
+  },
+  "routes": {
+    "START->1": [
+      "marker:entry_exit_human"
+    ],
+    "1->6": [
+      "marker:entry_exit_human",
+      "marker:human_to_lift1_p1",
+      "marker:human_to_lift1_p2",
+      "marker:lift1"
+    ],
+    "4->6": [
+      "marker:entry_exit_robot3",
+      "marker:human_to_lift1_p1",
+      "marker:human_to_lift1_p2",
+      "marker:lift1"
+    ],
+    "6->5": [
+      "marker:lift1",
+      "marker:visual_system"
+    ],
+    "5->2": [
+      "marker:visual_system",
+      "marker:entry_exit_robot1"
+    ],
+    "5->3": [
+      "marker:visual_system",
+      "marker:entry_exit_robot2"
+    ],
+    "5->7": [
+      "marker:visual_system",
+      "marker:robot_to_lift2_p1",
+      "marker:lift2"
+    ],
+    "2->7": [
+      "marker:entry_exit_robot1",
+      "marker:robot_to_lift2_p1",
+      "marker:lift2"
+    ],
+    "3->7": [
+      "marker:entry_exit_robot2",
+      "marker:robot_to_lift2_p1",
+      "marker:lift2"
+    ],
+    "7->1": [
+      "marker:lift2",
+      "marker:entry_exit_human"
+    ],
+    "7->4": [
+      "marker:lift2",
+      "marker:entry_exit_robot3"
+    ],
+    "4->1": [
+      "marker:entry_exit_robot3",
+      "marker:entry_exit_human"
+    ]
+  },
+  "palette_template": {
+    "prototype_path": "/World/Prototypes/Palette_Template",
+    "instance_prefix": "/World/Palettes/Palette_",
+    "initial_position": "marker:entry_exit_human",
+    "scale": [
+      0.15,
+      0.15,
+      0.15
+    ],
+    "asset_path": "3d/layout/carrier.usd"
+  },
+  "simulation_params": {
+    "timeline_fps": 24,
+    "path_sample_step": 12.0,
+    "max_keys_per_motion": 80,
+    "queue_slots_per_station": 5,
+    "micro_move_seconds": 0.1
+  },
+  "marker_stage": "3d/RealTimeTCPlogs/modelbuffer.usd"
+}

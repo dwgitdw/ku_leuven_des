@@ -1,0 +1,16 @@
+{
+  "tcp": {
+    "host": "127.0.0.1",
+    "port": 5051,
+    "timeout": 2.0
+  },
+  "logs": {
+    "path": "scripts/RealTimeTCPlogs/CSV/logs.csv",
+    "poll_interval": 0.1
+  },
+  "runtime": {
+    "duration_scale": 1.0
+  },
+  "composer_stage": "3d/RealTimeTCPlogs/modelbuffer.usd",
+  "layout": "scripts/RealTimeTCPlogs/realtimetcp_logs_layout.json"
+}

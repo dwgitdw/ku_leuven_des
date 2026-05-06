@@ -1,0 +1,119 @@
+{
+  "workstations": {
+    "Human": {
+      "entry": "marker:human",
+      "buffer": "marker:human",
+      "processing": "marker:human",
+      "exit": "marker:human",
+      "cycle_times": [
+        2,
+        5,
+        2
+      ]
+    },
+    "Robot_1": {
+      "entry": "marker:entry_exit_robot1",
+      "processing": "marker:processing_robot1",
+      "exit": "marker:entry_exit_robot1",
+      "process_time": 6
+    },
+    "Robot_2": {
+      "entry": "marker:entry_exit_robot2",
+      "processing": "marker:processing_robot2",
+      "exit": "marker:entry_exit_robot2",
+      "process_time": 6
+    }
+  },
+  "transfers": {
+    "Lift_ToQueue": {
+      "duration": 4.0,
+      "capacity": 1,
+      "from": "marker:human_to_queue_p1",
+      "to": "marker:human_to_queue_p2"
+    },
+    "Lift_Return": {
+      "duration": 4.0,
+      "capacity": 1,
+      "from": "marker:robot_return_p1",
+      "to": "marker:robot_return_p2"
+    }
+  },
+  "conveyor_segments": {
+    "START_TO_HUMAN": {
+      "waypoints": [
+        "marker:human"
+      ],
+      "capacity": 6,
+      "slot_spacing": 80
+    },
+    "HUMAN_QUEUE": {
+      "waypoints": [
+        "marker:start_human_queue",
+        "marker:end_human_queue"
+      ],
+      "capacity": 6,
+      "slot_spacing": 80,
+      "is_queue_zone": true
+    },
+    "HUMAN_TO_ROBOT_AREA": {
+      "waypoints": [
+        "marker:human",
+        "marker:human_to_queue_p1",
+        "marker:human_to_queue_p2",
+        "marker:start_robot_queue"
+      ],
+      "capacity": 3,
+      "slot_spacing": 80
+    },
+    "QUEUE_ROBOT_AREA": {
+      "waypoints": [
+        "marker:start_robot_queue",
+        "marker:end_robot_queue"
+      ],
+      "capacity": 6,
+      "slot_spacing": 160,
+      "is_queue_zone": true,
+      "extend_after_end": false
+    },
+    "ROBOT_1_RETURN": {
+      "waypoints": [
+        "marker:entry_exit_robot1",
+        "marker:robot_return_p1",
+        "marker:robot_return_p2",
+        "marker:human"
+      ],
+      "capacity": 2,
+      "slot_spacing": 80
+    },
+    "ROBOT_2_RETURN": {
+      "waypoints": [
+        "marker:entry_exit_robot2",
+        "marker:robot_return_p1",
+        "marker:robot_return_p2",
+        "marker:human"
+      ],
+      "capacity": 2,
+      "slot_spacing": 80
+    }
+  },
+  "palette_template": {
+    "prototype_path": "/World/Prototypes/Palette_Template",
+    "instance_prefix": "/World/Palettes/Palette_",
+    "asset_path": "3d/layout/carrier.usd",
+    "initial_position": "marker:end_human_queue",
+    "initial_spacing": -80,
+    "scale": [
+      0.15,
+      0.15,
+      0.15
+    ]
+  },
+  "simulation_params": {
+    "num_palettes": 10,
+    "inter_arrival_time": 3,
+    "transport_speed": 80,
+    "max_cycles": 3,
+    "timeline_fps": 24
+  },
+  "marker_stage": "3d/layout/model.usd"
+}

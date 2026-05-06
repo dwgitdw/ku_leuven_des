@@ -1,0 +1,14 @@
+[package]
+title = "RealTimeTCPlogs Auto Bridge"
+version = "0.1.0"
+description = "Auto-start TCP bridge for live log-driven USD Composer updates."
+category = "Simulation"
+keywords = ["usd", "tcp", "realtime", "logs", "bridge"]
+
+[settings.exts."omni.realtimetcplogs.autobridge"]
+enabled = true
+host = "127.0.0.1"
+port = 5051
+
+[[python.module]]
+name = "omni.realtimetcplogs.autobridge"
