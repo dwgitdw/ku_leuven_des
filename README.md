@@ -9,12 +9,11 @@ Pour installer le projet sur une nouvelle machine, faire d'abord ceci:
 ```powershell
 cd C:\Users\AUSOM\Desktop
 git lfs install
-git clone https://github.com/TON_USER/USD_Composer.git
+git clone https://github.com/dwgitdw/USD_Composer.git
 cd USD_Composer
 git lfs pull
 ```
 
-Remplacer `https://github.com/TON_USER/USD_Composer.git` par l'URL reelle du depot GitHub.
 
 Ensuite installer le template NVIDIA dans le dossier du projet:
 
