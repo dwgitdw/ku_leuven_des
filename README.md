@@ -151,6 +151,15 @@ NVIDIA procedure for creating an application from the template:
 .\repo.bat launch
 ```
 
+If `.\repo.bat launch` does not work, stay inside `kit-app-template/`, set the Packman cache variables, list the available templates once, then run launch again:
+
+```powershell
+$env:PM_PACKAGES_ROOT = "$HOME\.packman_cache"
+$env:PACKMAN_ROOT = "$HOME\.packman_cache"
+.\repo.bat template list
+.\repo.bat launch
+```
+
 During `template new`, use the following choices:
 
 | Wizard question | Recommended choice |
